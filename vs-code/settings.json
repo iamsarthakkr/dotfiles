@@ -1,0 +1,102 @@
+{
+	/* --------------------- Start Custom config -------------------*/
+
+	"workbench.sideBar.location": "right",
+	"workbench.activityBar.location": "hidden",
+	// "workbench.editor.showTabs": "multiple",
+	"workbench.startupEditor": "none",
+	"workbench.tips.enabled": false,
+	"workbench.statusBar.visible": false,
+
+	// theme settings
+	"workbench.tree.renderIndentGuides": "none",
+	"workbench.colorTheme": "Vim Dark Hard",
+	"workbench.iconTheme": "material-icon-theme",
+	"material-icon-theme.hidesExplorerArrows": true,
+	"workbench.colorCustomizations": {
+		"editorSuggestWidget.selectedBackground": "#131517",
+		"editorHoverWidget.statusBarBackground": "#131517",
+		"list.activeSelectionBackground": "#131517",
+		"list.inactiveSelectionBackground": "#131517",
+		"list.focusBackground": "#131517",
+		"list.hoverBackground": "#131517",
+		"editor.selectionBackground": "#1939348a",
+		"editor.selectionForeground": "#1939348a",
+		"editor.wordHighlightBackground": "#1939348a",
+		"editorCursor.foreground": "#00a48f"
+	},
+	"editor.minimap.enabled": false,
+	"editor.guides.indentation": false,
+	"editor.renderWhitespace": "selection",
+
+	// editor settings
+	"window.zoomLevel": 1,
+	"editor.fontSize": 16,
+	"editor.lineHeight": 2.5,
+	"editor.tabSize": 4,
+	"editor.insertSpaces": false,
+	"editor.fontFamily": "Dank Mono",
+	"editor.fontLigatures": true,
+	"editor.lineNumbers": "relative",
+	"editor.detectIndentation": false,
+	"editor.cursorBlinking": "solid",
+	"editor.cursorStyle": "line",
+	"editor.cursorSmoothCaretAnimation": "on",
+	"editor.renderLineHighlight": "none",
+	"editor.matchBrackets": "near",
+	"editor.lightbulb.enabled": "onCode",
+	"editor.hover.enabled": true,
+	"editor.showFoldingControls": "mouseover",
+	"editor.scrollbar.horizontal": "hidden",
+	"editor.scrollbar.vertical": "hidden",
+	"editor.overviewRulerBorder": false,
+	"breadcrumbs.enabled": false,
+	"explorer.confirmDragAndDrop": false,
+	"explorer.confirmDelete": true,
+	"explorer.compactFolders": false,
+	"editor.inlayHints.enabled": "off",
+
+	// git settings
+	// "git.decorations.enabled": false,
+	"files.insertFinalNewline": true,
+
+	"extensions.ignoreRecommendations": true,
+	"terminal.integrated.fontFamily": "Dank Mono, MesloLGS NF",
+	"terminal.integrated.fontSize": 16,
+	"terminal.integrated.lineHeight": 2,
+	"terminal.integrated.letterSpacing": 1,
+	"terminal.integrated.cursorStyle": "underline",
+	"editor.formatOnSave": false,
+	/* --------------------- End Custom config -------------------*/
+
+	"animations.Default-Duration": 100,
+	"animations.Scrolling": "Slide",
+	"vscode_custom_css.imports": [
+		"file:///Users/sarthakkumar/.vscode/extensions/brandonkirbyson.vscode-animations-2.0.7/dist/updateHandler.js"
+	],
+	"extensions.experimental.affinity": {
+		"asvetliakov.vscode-neovim": 1
+	},
+	"github.copilot.enable": {
+		"*": false,
+		"plaintext": false,
+		"markdown": false,
+		"scminput": false
+	},
+	"[typescriptreact]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[jsonc]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[typescript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"prettier.useTabs": true,
+	"prettier.tabWidth": 4,
+	"prettier.printWidth": 150,
+	"[json]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"C_Cpp.default.compilerPath": "/opt/homebrew/bin/g++-14",
+}
