@@ -19,7 +19,7 @@ local function TemplatePicker()
     if t then
 		local cmd = get_read_cmd(t)
 		vim.cmd(cmd.read)
-		-- vim.cmd('normal! ' .. cmd.move)
+		vim.cmd('normal! ' .. cmd.move)
     end
   end)
 end

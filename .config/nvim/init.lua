@@ -1,27 +1,25 @@
+
 -- remap leader key
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-if vim.g.vscode then
-    -- VSCode Neovim
-    require "user.vscode_keymaps"
-else
-    -- Ordinary Neovim
-    vim.opt.nu = true 
-    vim.opt.relativenumber = true
-
-    vim.opt.tabstop = 4 
-    vim.opt.softtabstop = 4
-    vim.opt.shiftwidth = 4 
-
-    vim.opt.expandtab = true
-
-    vim.opt.termguicolors = true
-    local opts = { noremap = true, silent = true } 
-    vim.keymap.set("n", "gk", "zz", opts)
-end
-
 require "user.templates"
+
+-- Ordinary Neovim
+vim.opt.nu = true 
+vim.opt.relativenumber = true
+
+vim.opt.tabstop = 4 
+vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
+
+vim.opt.termguicolors = true
+
+local opts = { noremap = true, silent = true } 
+vim.keymap.set("n", "gk", "zz", opts)
+vim.keymap.set("n", "<leader>zk", "zz", opts)
+
 
 -- Set highlight groups for Cursor and iCursor
 
