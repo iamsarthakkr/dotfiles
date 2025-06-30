@@ -1,42 +1,66 @@
+vim.cmd("let g:netrw_liststyle = 3")
+
+local opt = vim.opt -- for conciseness
+
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-vim.opt.nu = true 
-vim.opt.relativenumber = true
 
-vim.opt.tabstop = 4 
-vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.expandtab = true
+vim.o.timeout = true
+vim.o.timeoutlen = 5000
 
-vim.opt.termguicolors = true
+-- line numbers
+opt.relativenumber = true -- show relative line numbers
+opt.number = true -- shows absolute line number on cursor line (when relative number is on)
 
-vim.opt.smartindent = true
-vim.opt.wrap = false
+-- tabs & indentation
+opt.tabstop = 4 -- 4 spaces for tabs (prettier default)
+opt.shiftwidth = 4 -- 4 spaces for indent width
+opt.expandtab = false -- expand tab to spaces
+opt.autoindent = true -- copy indent from current line when starting new one
 
-vim.opt.swapfile = false
-vim.opt.backup = false
-vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
-vim.opt.undofile = true
+-- turn on termguicolors for colorscheme to work
+-- (have to use iterm2 or any other true color terminal)
+opt.termguicolors = true
+opt.background = "dark" -- colorschemes that can be light or dark will be made dark
+opt.signcolumn = "yes" -- show sign column so that text doesn't shift
 
-vim.opt.hlsearch = false
-vim.opt.incsearch = true
+opt.smartindent = true
 
-vim.opt.scrolloff = 8
-vim.opt.signcolumn = "yes"
-vim.opt.isfname:append("@-@")
+-- cursor line
+opt.cursorline = true -- highlight the current cursor line
 
-vim.opt.updatetime = 50
+-- line wrapping
+opt.wrap = false -- disable line wrappinge
 
-vim.opt.colorcolumn = "80"
+opt.swapfile = false
+opt.backup = false
+opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+opt.undofile = true
 
-vim.api.nvim_set_hl(0, "Cursor", { fg = "blue", bg = "#00a48f" })
-vim.api.nvim_set_hl(0, "iCursor", { fg = "black", bg = "#00a48f" })
+opt.hlsearch = false
+opt.incsearch = true
 
--- Configure guicursor options
-vim.opt.guicursor = {
-    "n-v-c:block-Cursor",       -- Normal, Visual, and Command-line modes use block cursor
-    "i:ver100-iCursor",         -- Insert mode uses vertical bar cursor with 100% height
-    "n-v-c:blinkon0",           -- Disable blinking for Normal, Visual, and Command-line modes
-    "i:blinkwait10"             -- Insert mode waits 10ms before blinking
-}
+-- search settings
+opt.ignorecase = true -- ignore case when searching
+opt.smartcase = true -- if you include mixed case in your search, assumes you want case-sensitive
+
+
+-- backspace
+opt.backspace = "indent,eol,start" -- allow backspace on indent, end of line or insert mode start position
+
+
+-- split windows
+opt.splitright = true -- split vertical window to the right
+opt.splitbelow = true -- split horizontal window to the bottom
+
+-- turn off swapfile
+opt.swapfile = false
+
+opt.scrolloff = 8 -- scroll offset for top and bottom 
+opt.isfname:append("@-@")
+
+opt.updatetime = 50
+
+opt.colorcolumn = "80"
+
