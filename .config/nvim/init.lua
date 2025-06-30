@@ -1,4 +1,7 @@
 require "user.set"
 require "user.remaps"
 -- require "user.templates"
-require "user.lazy"
+if vim.g.code then
+else
+	require "user.lazy"
+end
