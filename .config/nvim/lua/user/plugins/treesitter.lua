@@ -1,26 +1,36 @@
 return { 
 	"nvim-treesitter/nvim-treesitter",
 	branch = 'master',
-	lazy = false,
+	event = { "BufReadPre", "BufNewFile" },
 	build = ":TSUpdate",
+	dependencies = {
+		"windwp/nvim-ts-autotag"
+	},
 	config = function()
 		require('nvim-treesitter.configs').setup({
 			-- A list of parser names, or "all" (the listed parsers MUST always be installed)
 			ensure_installed = { 
-				"c",
+				"json",
+				"typescript",
 				'javascript',
+				"tsx",
+				"html",
+				"css",
 				"cpp",
+				"c",
 				"lua",
 				"vim",
 				"vimdoc",
 				"query",
 				"markdown",
-				"markdown_inline"
+				"markdown_inline",
 			},
-			sync_install = false,
+			sync_install = true,
 			auto_install = true,
 			highlight = {
 				enable = true,
+				indent = { enable = true },
+				autotag = { enable = true },
 				disable = function(lang, buf)
 					local max_filesize = 100 * 1024 -- 100 KB
 					local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
@@ -29,6 +39,31 @@ return {
 					end
 				end,
 			},
+			incremental_selection = {
+				enable = true,
+				keymaps = {
+					init_selection = "<C-space>",
+					node_incremental = "<C-space>",
+					scope_incremental = false,
+					node_decremental = "<bs>",
+				},
+			},
+		})
+		require('nvim-ts-autotag').setup({
+			opts = {
+				-- Defaults
+				enable_close = true, -- Auto close tags
+				enable_rename = true, -- Auto rename pairs of tags
+				enable_close_on_slash = false -- Auto close on trailing </
+			},
+			-- Also override individual filetype configs, these take priority.
+			-- Empty by default, useful if one of the "opts" global settings
+			-- doesn't work well in a specific filetype
+			per_filetype = {
+				["html"] = {
+					enable_close = false
+				}
+			}
 		})
 	end
 }
