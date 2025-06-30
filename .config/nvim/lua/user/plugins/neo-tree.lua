@@ -1,5 +1,4 @@
 return {
-
 	"nvim-neo-tree/neo-tree.nvim",
 	branch = "v3.x",
 	dependencies = {
@@ -9,72 +8,6 @@ return {
 		-- {"3rd/image.nvim", opts = {}}, -- Optional image support in preview window: See `# Preview Mode` for more information
 	},
 	lazy = false, -- neo-tree will lazily load itself
-	opts = {
-		window = {
-			position = "float", -- or "left", "right", "top", "bottom"
-			width = 40,         -- width of the window (if not float)
-			mappings = {
-				["<space>"] = "none", -- disable space key
-				["l"] = "open",       -- open file or folder
-				["h"] = "close_node", -- close folder
-				["v"] = "open_vsplit",-- open in vertical split
-				["s"] = "open_split", -- open in horizontal split
-				["t"] = "open_tabnew",-- open in new tab
-				["r"] = "refresh",    -- refresh Neo-tree
-			},
-		},
-		filesystem = {
-			filtered_items = {
-				visible = false, -- hide dotfiles by default
-				hide_dotfiles = true,
-				hide_gitignored = true,
-			},
-			follow_current_file = {
-				enabled = true, -- reveal file in Neo-tree when switching buffers
-			},
-			hijack_netrw_behavior = "open_default", -- replace netrw
-			use_libuv_file_watcher = true, -- auto refresh on file changes
-		},
-		buffers = {
-			follow_current_file = {
-				enabled = true, -- reveal buffer in Neo-tree when switching
-			},
-		},
-		git_status = {
-			window = {
-				position = "float",
-			},
-		},
-		default_component_configs = {
-			window = {
-				position = "float", -- or "left", "right", "top", "bottom"
-			},
-			indent = {
-				with_expanders = true, -- if file/folder has children
-			},
-			icon = {
-				folder_closed = "",
-				folder_open = "",
-				folder_empty = "",
-			},
-			modified = {
-				symbol = "[+]",
-			},
-			git_status = {
-				symbols = {
-					added     = "✚",
-					modified  = "",
-					deleted   = "✖",
-					renamed   = "➜",
-					untracked = "★",
-					ignored   = "◌",
-					unstaged  = "✗",
-					staged    = "✓",
-					conflict  = "",
-				}
-			}
-		}
-	},
 	config = function()
 		require("neo-tree").setup({
 			close_if_last_window = false, -- Close Neo-tree if it is the last window left in the tab
@@ -180,13 +113,13 @@ return {
 				},
 				mappings = {
 					["<2-LeftMouse>"] = "open",
+					["<c-cr>"] = "open",
 					["<cr>"] = "open_tabnew",
 					["<esc>"] = "cancel", -- close preview or floating neo-tree window
 					["P"] = { "toggle_preview", config = { use_float = true, use_image_nvim = true } },
 					["l"] = "focus_preview",
 					["S"] = "open_split",
 					["s"] = "open_vsplit",
-					["t"] = "open_tabnew",
 					["w"] = "open_with_window_picker",
 					["C"] = "close_node",
 					["z"] = "close_all_nodes",
@@ -354,5 +287,6 @@ return {
 
 		-- keymaps
 		keymap.set("n", "<leader>ee", ":Neotree float reveal<CR>", { desc = "Toggle Neo-tree" })
+		keymap.set("n", "<leader>eg", ":Neotree float reveal git_status<CR>", { desc = "Toggle Neo-tree git status" })
 	end
 }

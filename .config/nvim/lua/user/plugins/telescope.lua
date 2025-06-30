@@ -18,15 +18,13 @@ return {
 						["<C-k>"] = actions.move_selection_previous, -- move to prev result
 						["<C-j>"] = actions.move_selection_next, -- move to next result
 						["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
-						["<CR>"] = function(prompt_bufnr)
-							require("telescope.actions").select_tab(prompt_bufnr)
-						end
+						["<C-CR>"] = actions.select_default,
+						["<CR>"] = actions.select_tab				
 					},
 					n = {
-						["<CR>"] = function(prompt_bufnr)
-							require("telescope.actions").select_tab(prompt_bufnr)
-						end,
-					}
+						["<C-CR>"] = actions.select_default,
+						["<CR>"] = actions.select_tab					
+					},
 				},
 			},
 		})
