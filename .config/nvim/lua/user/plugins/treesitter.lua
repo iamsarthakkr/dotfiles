@@ -9,6 +9,15 @@ return {
 	config = function()
 		require('nvim-treesitter.configs').setup({
 			-- A list of parser names, or "all" (the listed parsers MUST always be installed)
+			incremental_selection = {
+				enable = true,
+				keymaps = {
+					init_selection = "<CR>",
+					node_incremental = "<CR>",
+					scope_incremental = false,
+					node_decremental = "<bs>",
+				},
+			},
 			ensure_installed = { 
 				"json",
 				"typescript",
@@ -29,8 +38,6 @@ return {
 			auto_install = true,
 			highlight = {
 				enable = true,
-				indent = { enable = true },
-				autotag = { enable = true },
 				disable = function(lang, buf)
 					local max_filesize = 100 * 1024 -- 100 KB
 					local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
@@ -39,15 +46,8 @@ return {
 					end
 				end,
 			},
-			incremental_selection = {
-				enable = true,
-				keymaps = {
-					init_selection = "<C-space>",
-					node_incremental = "<C-space>",
-					scope_incremental = false,
-					node_decremental = "<bs>",
-				},
-			},
+			indent = { enable = true },
+			autotag = { enable = true },
 		})
 		require('nvim-ts-autotag').setup({
 			opts = {
