@@ -5,3 +5,4 @@ if vim.g.code then
 else
 	require "user.lazy"
 end
+
