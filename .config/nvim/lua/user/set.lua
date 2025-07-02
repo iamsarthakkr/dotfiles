@@ -64,3 +64,12 @@ opt.updatetime = 50
 
 opt.colorcolumn = "120"
 
+
+vim.api.nvim_create_autocmd('TextYankPost', {
+	desc = "Highlight while yanking",
+	group = vim.api.nvim_create_augroup('highlight-yank', {clear = true}),
+	callback = function()
+		vim.highlight.on_yank()
+	end
+})
+

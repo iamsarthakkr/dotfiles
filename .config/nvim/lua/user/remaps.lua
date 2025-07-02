@@ -11,6 +11,9 @@ keymap.set("n", "<leader>k", "mzyyP`z", { desc = "Duplicate line up" })
 -- Join lines and keep cursor position in normal mode
 keymap.set("n", "J", "mzJ`z", { desc = "Join next line keeping the cursor intact" })
 
+keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Scroll down keeping the cursor centered" })
+keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Scroll up keeping the cursor centered" })
+
 -- Paste over selection without yanking in visual mode
 keymap.set("v", "<leader>p", "\"_dP", { desc = "Paste without yanking" })
 
