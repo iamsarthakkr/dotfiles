@@ -1,5 +1,6 @@
 return {
 	"williamboman/mason.nvim",
+	lazy = false,
 	dependencies = {
 		"williamboman/mason-lspconfig.nvim",
 	},
@@ -25,10 +26,10 @@ return {
 			-- list of servers for mason to install
 			ensure_installed = {
 				"ts_ls",
+				"lua_ls",
 				"html",
 				"cssls",
 				"tailwindcss",
-				"lua_ls",
 				"graphql",
 				"emmet_ls",
 			},
