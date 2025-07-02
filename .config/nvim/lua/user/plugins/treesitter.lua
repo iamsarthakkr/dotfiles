@@ -18,7 +18,7 @@ return {
 					node_decremental = "<bs>",
 				},
 			},
-			ensure_installed = { 
+			ensure_installed = {
 				"json",
 				"typescript",
 				'javascript',
