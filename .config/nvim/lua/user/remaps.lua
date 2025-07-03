@@ -23,9 +23,6 @@ keymap.set({ "n", "v" }, "<leader>Y", [["+Y]], { desc = "Copy to system clipboar
 -- Delete to void register in normal and visual modes
 keymap.set({ "n", "v" }, "<leader>d", "\"_d", { desc = "Delete to void register" })
 
--- use jk to exit insert mode
-keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode with jk" })
-
 -- delete single character without copying into register
 keymap.set("n", "x", '"_x', { desc = "Delete character without copying into register" })
 
@@ -40,10 +37,10 @@ keymap.set("n", "<leader>se", "<C-w>=", { desc = "Make splits equal size" }) -- 
 keymap.set("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current split" }) -- close current split window
 --
 -- Use Ctrl + arrow keys to move between splits
-vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Go to left split" })
-vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Go to below split" })
-vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Go to above split" })
-vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Go to right split" })
+keymap.set("n", "<C-h>", "<C-w>h", { desc = "Go to left split" })
+keymap.set("n", "<C-j>", "<C-w>j", { desc = "Go to below split" })
+keymap.set("n", "<C-k>", "<C-w>k", { desc = "Go to above split" })
+keymap.set("n", "<C-l>", "<C-w>l", { desc = "Go to right split" })
 
 keymap.set("n", "<leader>to", "<cmd>tabnew<CR>", { desc = "Open new tab" }) -- open new tab
 keymap.set("n", "<leader>tx", "<cmd>tabclose<CR>", { desc = "Close current tab" }) -- close current tab
