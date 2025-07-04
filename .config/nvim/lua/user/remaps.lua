@@ -1,5 +1,10 @@
 local keymap = vim.keymap
 
+
+keymap.set("n", "<leader><space>x", "<cmd>source %<CR>", { desc = "source current file" })
+keymap.set("n", "<leader>x", ":.lua<CR>", { desc = "execute current line" })
+keymap.set("v", "<leader>x", ":lua<CR>", { desc = "execute selection" })
+
 -- Move selected line/block up/down in visual mode
 keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move selected lines down" })
 keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move selected lines up" })
