@@ -58,7 +58,7 @@ for i = 1, 9 do
 end
 
 keymap.set("t", "<esc><esc>", "<C-\\><C-n>", { desc = "go to insert mode in terminal "})
-keymap.set("n", "<leader>tt", function()
+keymap.set("n", "<leader>to", function()
 	vim.cmd.vnew()
 	vim.cmd.terminal()
 	vim.cmd.wincmd("J")

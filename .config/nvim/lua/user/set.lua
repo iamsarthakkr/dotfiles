@@ -5,9 +5,10 @@ local opt = vim.opt -- for conciseness
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-
 vim.o.timeout = true
 vim.o.timeoutlen = 5000
+vim.o.clipboard = 'unnamedplus'
+
 
 -- line numbers
 opt.relativenumber = true -- show relative line numbers
@@ -49,7 +50,6 @@ opt.smartcase = true -- if you include mixed case in your search, assumes you wa
 -- backspace
 opt.backspace = "indent,eol,start" -- allow backspace on indent, end of line or insert mode start position
 
-
 -- split windows
 opt.splitright = true -- split vertical window to the right
 opt.splitbelow = true -- split horizontal window to the bottom
@@ -80,4 +80,3 @@ vim.api.nvim_create_autocmd("TermOpen", {
 		vim.cmd("startinsert")
 	end
 })
-
