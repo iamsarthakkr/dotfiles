@@ -56,3 +56,12 @@ keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer
 for i = 1, 9 do
   keymap.set("n", "<leader>t" .. i, i .. "gt", { desc = "Go to tab " .. i })
 end
+
+keymap.set("t", "<esc><esc>", "<C-\\><C-n>", { desc = "go to insert mode in terminal "})
+keymap.set("n", "<leader>tt", function()
+	vim.cmd.vnew()
+	vim.cmd.terminal()
+	vim.cmd.wincmd("J")
+	vim.cmd("startinsert")
+	vim.api.nvim_win_set_height(0, 15)
+end, { desc = "open terminal in vertical split" })
