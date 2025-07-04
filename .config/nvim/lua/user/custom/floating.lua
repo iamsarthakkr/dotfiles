@@ -1,7 +1,8 @@
 local state = {
 	float = {
 		win = -1,
-		buf = -1
+		buf = -1,
+		chan = -1
 	}
 }
 
@@ -31,16 +32,29 @@ local function open_centered_float(opts)
 	return { buf = buf, win = win }
 end
 
+-- Function to send a command to the floating terminal
+local function send_to_float_terminal(cmd)
+	if state.float.chan and state.float.chan > 0 then
+		vim.api.nvim_chan_send(state.float.chan, cmd .. "\n")
+	else
+		vim.notify("Floating terminal is not open!", vim.log.levels.WARN)
+	end
+end
+
 local function toggle_terminal(opts)
 	if not vim.api.nvim_win_is_valid(state.float.win) then
+		local buf_dir = vim.fn.expand('%:p:h')
+		print(buf_dir)
 		state.float = open_centered_float({
 			buf = state.float.buf,
 		})
 		if vim.bo[state.float.buf].buftype ~= "terminal" then
 			vim.api.nvim_set_current_win(state.float.win)
-			vim.fn.termopen(os.getenv("SHELL") or "sh")
+			state.float.chan = vim.fn.termopen(os.getenv("SHELL") or "sh", { cwd = buf_dir })
 			vim.bo[state.float.buf].buftype = "terminal"
+
 		end
+		send_to_float_terminal("cd " .. buf_dir .. " && clear")
 		vim.cmd("startinsert")
 	else
 		-- close window	

@@ -8,7 +8,7 @@ vim.g.maplocalleader = " "
 vim.o.timeout = true
 vim.o.timeoutlen = 5000
 vim.o.clipboard = 'unnamedplus'
-
+vim.o.foldenable = false
 
 -- line numbers
 opt.relativenumber = true -- show relative line numbers
