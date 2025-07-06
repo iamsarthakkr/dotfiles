@@ -29,7 +29,10 @@ return {
 			current_line = true
 		})
 		local lspconfig = require('lspconfig')
-		local capabilities = require('cmp_nvim_lsp').default_capabilities()
+		local capabilities = nil
+		if pcall(require, "cmp_nvim_lsp") then
+			capabilities = require("cmp_nvim_lsp").default_capabilities()
+		end
 
 		lspconfig.lua_ls.setup({ capabilities = capabilities })
 		lspconfig.ts_ls.setup({ capabilities = capabilities })
@@ -40,7 +43,7 @@ return {
 			callback = function(ev)
 				-- Buffer local mappings.
 			-- See `:help vim.lsp.*` for documentation on any of the below functions
-				local opts = { buffer = ev.buf, silent = true }
+				local opts = { buffer = 0, silent = true }
 				local keymap = vim.keymap
 				local builtin = require "telescope.builtin"
 
@@ -63,22 +66,18 @@ return {
 				vim.keymap.set("n", "<space>wd", builtin.lsp_document_symbols, opts)
 
 				opts.desc = "See available code actions"
-				keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
+				vim.keymap.set({ "n", "x" }, "<leader>ca", function()
+					require("tiny-code-action").code_action()
+				end, opts)
 
 				opts.desc = "Smart rename"
-				keymap.set("n", "<leader>cn", vim.lsp.buf.rename, opts) -- smart rename
+				keymap.set("n", "<leader>cr", vim.lsp.buf.rename, opts) -- smart rename
 
 				opts.desc = "Show buffer diagnostics"
 				keymap.set("n", "<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", opts)
 
 				opts.desc = "Show line diagnostics"
 				keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts)
-
-				opts.desc = "Go to previous diagnostic"
-				keymap.set("n", "dp", vim.diagnostic.goto_prev, opts)
-
-				opts.desc = "Go to next diagnostic"
-				keymap.set("n", "dn", vim.diagnostic.goto_next, opts)
 
 				opts.desc = "Show documentation for what is under cursor"
 				keymap.set("n", "K", vim.lsp.buf.hover, opts)

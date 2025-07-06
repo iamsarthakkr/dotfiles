@@ -52,7 +52,6 @@ local function toggle_terminal(opts)
 			vim.api.nvim_set_current_win(state.float.win)
 			state.float.chan = vim.fn.termopen(os.getenv("SHELL") or "sh", { cwd = buf_dir })
 			vim.bo[state.float.buf].buftype = "terminal"
-
 		end
 		send_to_float_terminal("cd " .. buf_dir .. " && clear")
 		vim.cmd("startinsert")

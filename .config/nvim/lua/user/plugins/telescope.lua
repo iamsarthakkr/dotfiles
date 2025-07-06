@@ -6,6 +6,7 @@ return {
 			"nvim-lua/plenary.nvim",
 			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 			"nvim-tree/nvim-web-devicons",
+			'nvim-telescope/telescope-ui-select.nvim',
 		},
 		config = function()
 			local telescope = require("telescope")
@@ -19,18 +20,15 @@ return {
 							["<C-k>"] = actions.move_selection_previous, -- move to prev result
 							["<C-j>"] = actions.move_selection_next, -- move to next result
 							["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
-							["<C-CR>"] = actions.select_default,
-							["<CR>"] = actions.select_tab
+							["<C-CR>"] = actions.select_tab,
 						},
 						n = {
-							["<C-CR>"] = actions.select_default,
-							["<CR>"] = actions.select_tab
+							["<C-CR>"] = actions.select_tab,
 						},
 					},
 				},
 			})
-
-			telescope.load_extension("fzf")
+			pcall(require("telescope").load_extension, "fzf")
 
 			-- set keymaps
 			local keymap = vim.keymap -- for conciseness
@@ -43,17 +41,45 @@ return {
 		end,
 	},
 	{
-		'nvim-telescope/telescope-ui-select.nvim',
-		config = function()
-			require("telescope").setup {
-				extensions = {
-					["ui-select"] = {
-						require("telescope.themes").get_dropdown {
-						}
-					}
+		"rachartier/tiny-code-action.nvim",
+		dependencies = {
+			{"nvim-lua/plenary.nvim"},
+		},
+		event = "LspAttach",
+		opts = {
+			backend = "vim",
+			picker = "telescope",
+			backend_opts = {
+				delta = {
+					header_lines_to_remove = 4,
+					args = {
+						"--line-numbers",
+					},
+				},
+				difftastic = {
+					header_lines_to_remove = 1,
+					args = {
+						"--color=always",
+						"--display=inline",
+						"--syntax-highlight=on",
+					},
+				},
+				diffsofancy = {
+					header_lines_to_remove = 4,
 				}
-			}
-			require("telescope").load_extension("ui-select")
-		end
+			},
+			signs = {
+				quickfix = { "", { link = "DiagnosticWarning" } },
+				others = { "", { link = "DiagnosticWarning" } },
+				refactor = { "", { link = "DiagnosticInfo" } },
+				["refactor.move"] = { "󰪹", { link = "DiagnosticInfo" } },
+				["refactor.extract"] = { "", { link = "DiagnosticError" } },
+				["source.organizeImports"] = { "", { link = "DiagnosticWarning" } },
+				["source.fixAll"] = { "󰃢", { link = "DiagnosticError" } },
+				["source"] = { "", { link = "DiagnosticError" } },
+				["rename"] = { "󰑕", { link = "DiagnosticWarning" } },
+				["codeAction"] = { "", { link = "DiagnosticWarning" } },
+			},
+		}
 	}
 }

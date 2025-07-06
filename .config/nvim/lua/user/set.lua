@@ -2,6 +2,7 @@ vim.cmd("let g:netrw_liststyle = 3")
 
 local opt = vim.opt -- for conciseness
 
+
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
@@ -9,6 +10,7 @@ vim.o.timeout = true
 vim.o.timeoutlen = 5000
 vim.o.clipboard = 'unnamedplus'
 vim.o.foldenable = false
+
 
 -- line numbers
 opt.relativenumber = true -- show relative line numbers
