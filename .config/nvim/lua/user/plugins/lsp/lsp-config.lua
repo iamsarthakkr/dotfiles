@@ -67,7 +67,7 @@ return {
 
 				opts.desc = "See available code actions"
 				vim.keymap.set({ "n", "x" }, "<leader>ca", function()
-					require("tiny-code-action").code_action()
+					require("tiny-code-action").code_action(opts)
 				end, opts)
 
 				opts.desc = "Smart rename"
@@ -81,9 +81,6 @@ return {
 
 				opts.desc = "Show documentation for what is under cursor"
 				keymap.set("n", "K", vim.lsp.buf.hover, opts)
-
-				opts.desc = "Restart LSP"
-				keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts)
 			end,
 		})
 	end
