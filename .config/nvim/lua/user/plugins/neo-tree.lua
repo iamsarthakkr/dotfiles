@@ -116,8 +116,8 @@ return {
 				},
 				mappings = {
 					["<2-LeftMouse>"] = "open",
-					["<c-cr>"] = "open",
-					["<cr>"] = "open_tabnew",
+					["<c>"] = "open",
+					["<c-cr>"] = "open_tabnew",
 					["<esc>"] = "cancel", -- close preview or floating neo-tree window
 					["P"] = { "toggle_preview", config = { use_float = true, use_image_nvim = true } },
 					["l"] = "focus_preview",
