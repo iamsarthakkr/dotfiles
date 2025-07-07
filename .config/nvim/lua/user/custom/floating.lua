@@ -61,6 +61,7 @@ local function toggle_terminal(opts)
 	end
 end
 
+
 vim.api.nvim_create_user_command("Float", toggle_terminal , {
 	nargs = "*",
 	desc = "Open a centered floating window. Usage: :CenteredFloat [width_percent] [height_percent]",

@@ -94,11 +94,13 @@ return {
 					enabled = true,
 					width = 20, -- width of the column
 					required_width = 88, -- min width of window required to show this column
+					format = "relative"
 				},
 				created = {
 					enabled = true,
 					width = 20, -- width of the column
 					required_width = 110, -- min width of window required to show this column
+					format = "relative"
 				},
 				symlink_target = {
 					enabled = false,
