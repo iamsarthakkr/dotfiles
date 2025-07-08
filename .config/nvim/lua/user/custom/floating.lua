@@ -1,9 +1,12 @@
+local M = {}
+
 local state = {
 	float = {
 		win = -1,
 		buf = -1,
 		chan = -1
-	}
+	},
+	buf_dir = ""
 }
 
 local function open_centered_float(opts)
@@ -33,27 +36,32 @@ local function open_centered_float(opts)
 end
 
 -- Function to send a command to the floating terminal
-local function send_to_float_terminal(cmd)
-	if state.float.chan and state.float.chan > 0 then
+M.send_to_terminal = function(cmd)
+	if state.float.chan ~= nil and state.float.chan > 0 then
 		vim.api.nvim_chan_send(state.float.chan, cmd .. "\n")
 	else
 		vim.notify("Floating terminal is not open!", vim.log.levels.WARN)
 	end
 end
 
-local function toggle_terminal(opts)
+M.toggle_terminal = function(opts)
 	if not vim.api.nvim_win_is_valid(state.float.win) then
 		local buf_dir = vim.fn.expand('%:p:h')
-		print(buf_dir)
+		local chan_nr = state.float.chan
 		state.float = open_centered_float({
 			buf = state.float.buf,
 		})
+		state.float.chan = chan_nr
 		if vim.bo[state.float.buf].buftype ~= "terminal" then
 			vim.api.nvim_set_current_win(state.float.win)
-			state.float.chan = vim.fn.termopen(os.getenv("SHELL") or "sh", { cwd = buf_dir })
+			state.float.chan = vim.fn.termopen(os.getenv("SHELL") or "sh")
 			vim.bo[state.float.buf].buftype = "terminal"
 		end
-		send_to_float_terminal("cd " .. buf_dir .. " && clear")
+
+		if state.buf_dir ~= buf_dir then
+			M.send_to_terminal("cd " .. buf_dir .. " && clear")
+			state.buf_dir = buf_dir
+		end
 		vim.cmd("startinsert")
 	else
 		-- close window	
@@ -61,11 +69,15 @@ local function toggle_terminal(opts)
 	end
 end
 
+M.is_open = function()
+	return	vim.api.nvim_win_is_valid(state.float.win)
+end
 
-vim.api.nvim_create_user_command("Float", toggle_terminal , {
+vim.api.nvim_create_user_command("Float", M.toggle_terminal , {
 	nargs = "*",
 	desc = "Open a centered floating window. Usage: :CenteredFloat [width_percent] [height_percent]",
 })
 
-vim.keymap.set({"n", "t"}, "<C-t><C-t>", toggle_terminal, { desc = "Toggle floating terminal" })
+vim.keymap.set({"n", "t"}, "<C-t>", M.toggle_terminal, { desc = "Toggle floating terminal" })
 
+return M

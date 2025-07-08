@@ -40,7 +40,11 @@ keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" }) --
 keymap.set("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally" }) -- split window horizontally
 keymap.set("n", "<leader>se", "<C-w>=", { desc = "Make splits equal size" }) -- make split windows equal width & height
 keymap.set("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current split" }) -- close current split window
---
+keymap.set('n', '<C-->',  '<cmd>vertical resize -3<CR>', { desc = "increase split width" })
+keymap.set('n', '<C-=>', '<cmd>vertical resize +3<CR>', { desc = "decrease split width" })
+keymap.set('n', '<C-_>',    '<cmd>resize +3<CR>', { desc = "increase split height" })
+keymap.set('n', '<C-+>',  '<cmd>resize -3<CR>', { desc = "increase split height" })
+
 -- Use Ctrl + arrow keys to move between splits
 keymap.set("n", "<C-h>", "<C-w>h", { desc = "Go to left split" })
 keymap.set("n", "<C-j>", "<C-w>j", { desc = "Go to below split" })
