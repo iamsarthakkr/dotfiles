@@ -7,5 +7,5 @@ keymap.set("n", "<leader>rf", function()
 	local filename = vim.fn.expand("%:t")
 	if floating.is_open() then return end
 	floating.toggle_terminal()
-	floating.send_to_terminal("localRun" .. filename)
+	floating.send_to_terminal("localRun " .. filename)
 end, { buffer = true, desc = "run current file for file input" })
