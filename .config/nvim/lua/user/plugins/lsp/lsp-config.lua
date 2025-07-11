@@ -4,7 +4,7 @@ return {
 	dependencies = {
 		"hrsh7th/cmp-nvim-lsp",
 		{ "antosha417/nvim-lsp-file-operations", config = true },
-		{ "folke/neodev.nvim", opts = {} },
+		{ "folke/neodev.nvim",                   opts = {} },
 	},
 	config = function()
 		vim.diagnostic.enable = true
@@ -12,23 +12,23 @@ return {
 			virtual_text = {
 				prefix = function(diagnostic)
 					local icons = {
-						[vim.diagnostic.severity.ERROR] = "",   -- Error
-						[vim.diagnostic.severity.WARN]  = "",   -- Warning
-						[vim.diagnostic.severity.INFO]  = "",   -- Info
-						[vim.diagnostic.severity.HINT]  = "󰌵",  -- Hint
+						[vim.diagnostic.severity.ERROR] = "", -- Error
+						[vim.diagnostic.severity.WARN] = "", -- Warning
+						[vim.diagnostic.severity.INFO] = "", -- Info
+						[vim.diagnostic.severity.HINT] = "󰌵", -- Hint
 					}
 					return icons[diagnostic.severity] or ""
 				end,
-				virt_text_pos = 'eol_right_align',
+				virt_text_pos = "eol_right_align",
 				source = "if_many", -- show source if multiple
 			},
 			signs = true,
 			underline = true,
 			update_in_insert = false,
 			severity_sort = true,
-			current_line = true
+			current_line = true,
 		})
-		local lspconfig = require('lspconfig')
+		local lspconfig = require("lspconfig")
 		local capabilities = nil
 		if pcall(require, "cmp_nvim_lsp") then
 			capabilities = require("cmp_nvim_lsp").default_capabilities()
@@ -37,15 +37,16 @@ return {
 		lspconfig.lua_ls.setup({ capabilities = capabilities })
 		lspconfig.ts_ls.setup({ capabilities = capabilities })
 		lspconfig.clangd.setup({ capabilities = capabilities })
+		lspconfig.eslint_.setup({ capabilities = capabilities })
 
 		vim.api.nvim_create_autocmd("LspAttach", {
-			group = vim.api.nvim_create_augroup("UserLspConfig", {}),
-			callback = function(ev)
+			group = vim.api.nvim_create_augroup("UserLspConfig", { clear = true }),
+			callback = function(_)
 				-- Buffer local mappings.
-			-- See `:help vim.lsp.*` for documentation on any of the below functions
+				-- See `:help vim.lsp.*` for documentation on any of the below functions
 				local opts = { buffer = 0, silent = true }
 				local keymap = vim.keymap
-				local builtin = require "telescope.builtin"
+				local builtin = require("telescope.builtin")
 
 				-- set keybinds
 				vim.opt_local.omnifunc = "v:lua.vim.lsp.omnifunc"
@@ -61,6 +62,9 @@ return {
 
 				opts.desc = "Show LSP type definition"
 				vim.keymap.set("n", "gT", vim.lsp.buf.type_definition, opts)
+
+				opts.desc = "Format file"
+				vim.keymap.set("n", "<leader>gf", vim.lsp.buf.format, opts)
 
 				opts.desc = "Show LSP document symbols"
 				vim.keymap.set("n", "<space>wd", builtin.lsp_document_symbols, opts)
@@ -83,6 +87,5 @@ return {
 				keymap.set("n", "K", vim.lsp.buf.hover, opts)
 			end,
 		})
-	end
+	end,
 }
-

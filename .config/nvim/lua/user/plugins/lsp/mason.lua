@@ -22,18 +22,6 @@ return {
 			},
 		})
 
-		mason_lspconfig.setup({
-			-- list of servers for mason to install
-			ensure_installed = {
-				"clangd",
-				"ts_ls",
-				"lua_ls",
-				"html",
-				"cssls",
-				"tailwindcss",
-				"graphql",
-				"emmet_ls",
-			},
-		})
+		mason_lspconfig.setup({})
 	end,
 }
