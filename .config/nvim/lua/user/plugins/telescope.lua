@@ -6,7 +6,7 @@ return {
 			"nvim-lua/plenary.nvim",
 			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 			"nvim-tree/nvim-web-devicons",
-			'nvim-telescope/telescope-ui-select.nvim',
+			"nvim-telescope/telescope-ui-select.nvim",
 		},
 		config = function()
 			local telescope = require("telescope")
@@ -35,15 +35,25 @@ return {
 
 			keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Fuzzy find files in cwd" })
 			keymap.set("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>", { desc = "Fuzzy find recent files" })
-			keymap.set("n", "<leader>fs", "<cmd>Telescope current_buffer_fuzzy_find<cr>", { desc = "Find string in current buffer" })
+			keymap.set(
+				"n",
+				"<leader>fs",
+				"<cmd>Telescope current_buffer_fuzzy_find<cr>",
+				{ desc = "Find string in current buffer" }
+			)
 			keymap.set("n", "<leader>fa", "<cmd>Telescope live_grep<cr>", { desc = "Find string in cwd" })
-			keymap.set("n", "<leader>fc", "<cmd>Telescope grep_string<cr>", { desc = "Find string under cursor in cwd" })
+			keymap.set(
+				"n",
+				"<leader>fc",
+				"<cmd>Telescope grep_string<cr>",
+				{ desc = "Find string under cursor in cwd" }
+			)
 		end,
 	},
 	{
 		"rachartier/tiny-code-action.nvim",
 		dependencies = {
-			{"nvim-lua/plenary.nvim"},
+			{ "nvim-lua/plenary.nvim" },
 		},
 		event = "LspAttach",
 		opts = {
@@ -66,7 +76,7 @@ return {
 				},
 				diffsofancy = {
 					header_lines_to_remove = 4,
-				}
+				},
 			},
 			signs = {
 				quickfix = { "", { link = "DiagnosticWarning" } },
@@ -80,6 +90,6 @@ return {
 				["rename"] = { "󰑕", { link = "DiagnosticWarning" } },
 				["codeAction"] = { "", { link = "DiagnosticWarning" } },
 			},
-		}
-	}
+		},
+	},
 }

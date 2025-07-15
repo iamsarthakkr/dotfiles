@@ -1,10 +1,6 @@
 local floating = require("user.custom.floating")
 local keymap = vim.keymap
 
-vim.opt.shiftwidth = 4
-
-print("hello from cpp")
-
 keymap.set("n", "<leader>rf", function()
 	local filename = vim.fn.expand("%:t")
 	if floating.is_open() then
