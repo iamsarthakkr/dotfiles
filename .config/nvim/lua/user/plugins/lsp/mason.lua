@@ -22,6 +22,8 @@ return {
 			},
 		})
 
-		mason_lspconfig.setup({})
+		mason_lspconfig.setup({
+			automatic_enable = false,
+		})
 	end,
 }

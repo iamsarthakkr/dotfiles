@@ -35,16 +35,33 @@ return {
 		end
 
 		lspconfig.lua_ls.setup({ capabilities = capabilities })
-		lspconfig.ts_ls.setup({ capabilities = capabilities })
+		lspconfig.ts_ls.setup({
+			capabilities = capabilities,
+			settings = {
+				typescript = {
+					format = {
+						indentSize = 4,
+						tabSize = 4,
+						convertTabsToSpaces = true,
+					},
+				},
+				javascript = {
+					format = {
+						indentSize = 4,
+						tabSize = 4,
+						convertTabsToSpaces = true,
+					},
+				},
+			},
+		})
 		lspconfig.clangd.setup({ capabilities = capabilities })
-		lspconfig.eslint_.setup({ capabilities = capabilities })
 
 		vim.api.nvim_create_autocmd("LspAttach", {
 			group = vim.api.nvim_create_augroup("UserLspConfig", { clear = true }),
-			callback = function(_)
+			callback = function(ev)
 				-- Buffer local mappings.
 				-- See `:help vim.lsp.*` for documentation on any of the below functions
-				local opts = { buffer = 0, silent = true }
+				local opts = { buffer = ev.buf, silent = true }
 				local keymap = vim.keymap
 				local builtin = require("telescope.builtin")
 

@@ -10,8 +10,22 @@ return {
 			sources = {
 				null_ls.builtins.formatting.stylua,
 				null_ls.builtins.formatting.prettier,
-				require("none-ls.diagnostics.cpplint"),
-				require("none-ls.diagnostics.eslint"),
+				null_ls.builtins.formatting.clang_format.with({
+					extra_args = { "--style=file" },
+				}),
+				require("none-ls.diagnostics.eslint").with({
+					condition = function(utils)
+						-- only enable if there's an ESLint config file
+						return utils.root_has_file({
+							".eslintrc.js",
+							".eslintrc.cjs",
+							".eslintrc.mjs",
+							".eslintrc.json",
+							"eslint.config.js",
+							"eslint.config.mjs",
+						})
+					end,
+				}),
 			},
 		})
 
