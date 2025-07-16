@@ -1,67 +1,38 @@
 return {
     {
-        "L3MON4D3/LuaSnip",        -- snippet expander
+        "saghen/blink.cmp",
+        -- optional: provides snippets for the snippet source
         dependencies = {
-            "saadparwaiz1/cmp_luasnip", -- for autocompletion
-            "rafamadriz/friendly-snippets", -- useful snippets
-            "onsails/lspkind.nvim", -- vs-code like pictograms
-            "hrsh7th/cmp-buffer",  -- source for text in buffer
-            "hrsh7th/cmp-path",    -- source for file system paths
+            "rafamadriz/friendly-snippets",
         },
+        version = "1.*",
+        opts = {
+            keymap = {
+                preset = "default",
+                ["<C-K>"] = { "select_prev", "fallback" },
+                ["<C-J>"] = { "select_next", "fallback" },
+                ["<CR>"] = { "select_and_accept", "fallback" },
+            },
+            appearance = {
+                nerd_font_variant = "mono",
+            },
+            signature = { enabled = true },
+            completion = { documentation = { auto_show = true, auto_show_delay_ms = 500 } },
+            snippets = { preset = "luasnip" },
+            sources = {
+                default = { "lsp", "path", "snippets", "buffer" },
+            },
+            fuzzy = { implementation = "prefer_rust_with_warning" },
+        },
+        opts_extend = { "sources.default" },
     },
     {
-        "hrsh7th/nvim-cmp", -- autocompletion engine plugin
-        event = "InsertEnter",
+        "L3MON4D3/LuaSnip",
+        version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+        build = "make install_jsregexp",
         config = function()
-            local cmp = require("cmp")
-            local luasnip = require("luasnip")
-
-            -- loads vscode style snippets from installed plugins (e.g. friendly-snippet)
             require("luasnip.loaders.from_vscode").lazy_load()
             require("luasnip.loaders.from_snipmate").lazy_load({ paths = { "~/.config/nvim/snippets" } })
-
-            cmp.setup({
-                snippet = { -- configure how nvim-cmp interacts with snippet engine
-                    expand = function(args)
-                        luasnip.lsp_expand(args.body)
-                    end,
-                },
-                window = {
-                    completion = cmp.config.window.bordered(),
-                    documentation = cmp.config.window.bordered(),
-                },
-                mapping = cmp.mapping.preset.insert({
-                    ["<C-k>"] = cmp.mapping.select_prev_item(), -- previous suggestion
-                    ["<C-j>"] = cmp.mapping.select_next_item(), -- next suggestion
-                    ["<C-b>"] = cmp.mapping.scroll_docs(-4),
-                    ["<C-f>"] = cmp.mapping.scroll_docs(4),
-                    ["<C-Space>"] = cmp.mapping.complete(), -- show completion suggestions
-                    ["<C-e>"] = cmp.mapping.abort(), -- close completion window
-                    ["<CR>"] = cmp.mapping.confirm({ select = false }),
-                }),
-                -- sources for autocompletion
-                sources = cmp.config.sources({
-                    { name = "luasnip" }, -- snippets
-                    { name = "nvim_lsp" }, -- lsp
-                    { name = "buffer" }, -- text within current buffer
-                }),
-            })
-
-            local keymap = vim.keymap
-            print()
-
-            keymap.set({ "i", "s" }, "<C-N>", function()
-                luasnip.jump(1)
-            end, { silent = true })
-            keymap.set({ "i", "s" }, "<C-P>", function()
-                luasnip.jump(-1)
-            end, { silent = true })
-
-            keymap.set({ "i", "s" }, "<C-E>", function()
-                if luasnip.choice_active() then
-                    luasnip.change_choice(1)
-                end
-            end, { silent = true })
         end,
     },
 }

@@ -2,7 +2,7 @@ return {
 	"neovim/nvim-lspconfig",
 	lazy = false,
 	dependencies = {
-		"hrsh7th/cmp-nvim-lsp",
+		"saghen/blink.cmp",
 		{ "antosha417/nvim-lsp-file-operations", config = true },
 		{ "folke/neodev.nvim", opts = {} },
 	},
@@ -31,7 +31,7 @@ return {
 		local lspconfig = require("lspconfig")
 		local capabilities = nil
 		if pcall(require, "cmp_nvim_lsp") then
-			capabilities = require("cmp_nvim_lsp").default_capabilities()
+			capabilities = require("blink.cmp").get_lsp_capabilities()
 		end
 
 		lspconfig.lua_ls.setup({ capabilities = capabilities })
