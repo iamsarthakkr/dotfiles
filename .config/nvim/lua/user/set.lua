@@ -12,20 +12,20 @@ vim.o.foldenable = false
 
 -- line numbers
 opt.relativenumber = true -- show relative line numbers
-opt.number = true         -- shows absolute line number on cursor line (when relative number is on)
+opt.number = true -- shows absolute line number on cursor line (when relative number is on)
 
 -- tabs & indentation
-opt.tabstop = 4       -- 4 spaces for tabs (prettier default)
-opt.shiftwidth = 4    -- 4 spaces for indent width
-opt.softtabstop = 4   -- 4 space for indent
-opt.expandtab = true  -- expand tab to spaces
+opt.tabstop = 4 -- 4 spaces for tabs (prettier default)
+opt.shiftwidth = 4 -- 4 spaces for indent width
+opt.softtabstop = 4 -- 4 space for indent
+opt.expandtab = true -- expand tab to spaces
 opt.autoindent = true -- copy indent fromocurrent line when starting new one
 
 -- turn on termguicolors for colorscheme to work
 -- (have to use iterm2 or any other true color terminal)
 opt.termguicolors = true
 opt.background = "dark" -- colorschemes that can be light or dark will be made dark
-opt.signcolumn = "yes"  -- show sign column so that text doesn't shift
+opt.signcolumn = "yes" -- show sign column so that text doesn't shift
 
 opt.smartindent = true
 
@@ -45,7 +45,7 @@ opt.incsearch = true
 
 -- search settings
 opt.ignorecase = true -- ignore case when searching
-opt.smartcase = true  -- if you include mixed case in your search, assumes you want case-sensitive
+opt.smartcase = true -- if you include mixed case in your search, assumes you want case-sensitive
 
 -- backspace
 opt.backspace = "indent,eol,start" -- allow backspace on indent, end of line or insert mode start position

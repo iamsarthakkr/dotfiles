@@ -40,7 +40,7 @@ return {
 					folder_closed = "",
 					folder_open = "",
 					folder_empty = "󰜌",
-					folder_empty_open = '󰜌',
+					folder_empty_open = "󰜌",
 					provider = function(icon, node, _) -- default icon provider utilizes nvim-web-devicons if available
 						if node.type == "file" or node.type == "terminal" then
 							local success, web_devicons = pcall(require, "nvim-web-devicons")
@@ -68,15 +68,15 @@ return {
 				},
 				git_status = {
 					symbols = {
-						added     = "✚",
-						modified  = "",
-						deleted   = "✖",
-						renamed   = "➜",
+						added = "✚",
+						modified = "",
+						deleted = "✖",
+						renamed = "➜",
 						untracked = "★",
-						ignored   = "◌",
-						unstaged  = "✗",
-						staged    = "✓",
-						conflict  = ""
+						ignored = "◌",
+						unstaged = "✗",
+						staged = "✓",
+						conflict = "",
 					},
 				},
 				-- If you don't want to use these columns, you can set `enabled = false` for each of them individually
@@ -94,13 +94,13 @@ return {
 					enabled = true,
 					width = 20, -- width of the column
 					required_width = 88, -- min width of window required to show this column
-					format = "relative"
+					format = "relative",
 				},
 				created = {
 					enabled = true,
 					width = 20, -- width of the column
 					required_width = 110, -- min width of window required to show this column
-					format = "relative"
+					format = "relative",
 				},
 				symlink_target = {
 					enabled = false,
@@ -290,5 +290,5 @@ return {
 		-- keymaps
 		keymap.set("n", "<leader>ee", ":Neotree float reveal<CR>", { desc = "Toggle Neo-tree" })
 		keymap.set("n", "<leader>eg", ":Neotree float reveal git_status<CR>", { desc = "Toggle Neo-tree git status" })
-	end
+	end,
 }

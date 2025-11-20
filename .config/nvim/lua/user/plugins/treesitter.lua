@@ -1,14 +1,15 @@
 ---@diagnostic disable: missing-fields
 return {
 	"nvim-treesitter/nvim-treesitter",
-	branch = 'master',
+	branch = "master",
 	event = { "BufReadPre", "BufNewFile" },
 	build = ":TSUpdate",
 	dependencies = {
-		"windwp/nvim-ts-autotag"
+		"windwp/nvim-ts-autotag",
+		"nvim-treesitter/nvim-treesitter-textobjects",
 	},
 	config = function()
-		require('nvim-treesitter.configs').setup({
+		require("nvim-treesitter.configs").setup({
 			-- A list of parser names, or "all" (the listed parsers MUST always be installed)
 			incremental_selection = {
 				enable = true,
@@ -22,7 +23,7 @@ return {
 			ensure_installed = {
 				"json",
 				"typescript",
-				'javascript',
+				"javascript",
 				"tsx",
 				"html",
 				"css",
@@ -47,23 +48,35 @@ return {
 					end
 				end,
 			},
+			textobjects = {
+				select = {
+					enable = true,
+					lookahead = true,
+					keymaps = {
+						["af"] = "@function.outer",
+						["if"] = "@function.inner",
+						["ac"] = "@class.outer",
+						["ic"] = "@class.inner",
+					},
+				},
+			},
 			indent = { enable = true },
 		})
-		require('nvim-ts-autotag').setup({
+		require("nvim-ts-autotag").setup({
 			opts = {
 				-- Defaults
 				enable_close = true, -- Auto close tags
 				enable_rename = true, -- Auto rename pairs of tags
-				enable_close_on_slash = false -- Auto close on trailing </
+				enable_close_on_slash = false, -- Auto close on trailing </
 			},
 			-- Also override individual filetype configs, these take priority.
 			-- Empty by default, useful if one of the "opts" global settings
 			-- doesn't work well in a specific filetype
 			per_filetype = {
 				["html"] = {
-					enable_close = false
-				}
-			}
+					enable_close = false,
+				},
+			},
 		})
-	end
+	end,
 }

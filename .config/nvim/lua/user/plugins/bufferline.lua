@@ -1,15 +1,15 @@
 return {
-	'akinsho/bufferline.nvim',
+	"akinsho/bufferline.nvim",
 	version = "*",
-	dependencies = 'nvim-tree/nvim-web-devicons',
+	dependencies = "nvim-tree/nvim-web-devicons",
 	config = function()
-		local bufferline = require('bufferline')
-		bufferline.setup {
+		local bufferline = require("bufferline")
+		bufferline.setup({
 			options = {
 				mode = "tabs", -- set to "tabs" to only show tabpages instead
 				style_preset = bufferline.style_preset.default, -- or bufferline.style_preset.minimal,
 				themable = true, -- allows highlight groups to be overriden i.e. sets highlights as default
-				numbers = "ordinal", 
+				numbers = "ordinal",
 				show_duplicate_prefix = false,
 				separator_style = "slant",
 				custom_filter = function(buf_number, buf_numbers)
@@ -20,8 +20,8 @@ return {
 						return false
 					end
 					return true
-				end
+				end,
 			},
-		}
-	end
+		})
+	end,
 }
