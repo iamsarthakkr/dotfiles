@@ -11,7 +11,6 @@ return {
                 preset = "default",
                 ["<C-K>"] = { "select_prev", "fallback" },
                 ["<C-J>"] = { "select_next", "fallback" },
-                ["<CR>"] = { "select_and_accept", "fallback" },
             },
             appearance = {
                 nerd_font_variant = "mono",

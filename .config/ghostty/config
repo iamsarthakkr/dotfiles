@@ -4,7 +4,7 @@
 window-height = 400
 window-width = 200
 title = "Terminal"
-theme = catppuccin-macchiato
+theme = "Catppuccin Macchiato"
 confirm-close-surface = false
 quit-after-last-window-closed = true
 window-padding-color = extend
