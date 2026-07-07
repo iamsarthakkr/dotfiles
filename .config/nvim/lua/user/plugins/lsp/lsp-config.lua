@@ -34,9 +34,10 @@ return {
 			capabilities = require("blink.cmp").get_lsp_capabilities()
 		end
 
-		lspconfig.lua_ls.setup({ capabilities = capabilities })
-		lspconfig.ts_ls.setup({
-			capabilities = capabilities,
+		local servers = { "ts_ls", "lua_ls", "tailwindcss", "clangd" }
+
+		vim.lsp.config("*", { capabilities = capabilities })
+		vim.lsp.config.lua_ls = {
 			settings = {
 				typescript = {
 					format = {
@@ -53,10 +54,33 @@ return {
 					},
 				},
 			},
-		})
-		lspconfig.clangd.setup({ capabilities = capabilities })
-		lspconfig.tailwindcss.setup({ capabilities = capabilities })
+		}
 
+		vim.lsp.enable(servers)
+
+		-- lspconfig.ts_ls.setup({ capabilities = capabilities })
+		-- lspconfig.lua_ls.setup({
+		-- 	capabilities = capabilities,
+		-- 	settings = {
+		-- 		typescript = {
+		-- 			format = {
+		-- 				indentSize = 4,
+		-- 				tabSize = 4,
+		-- 				convertTabsToSpaces = true,
+		-- 			},
+		-- 		},
+		-- 		javascript = {
+		-- 			format = {
+		-- 				indentSize = 4,
+		-- 				tabSize = 4,
+		-- 				convertTabsToSpaces = true,
+		-- 			},
+		-- 		},
+		-- 	},
+		-- })
+		-- lspconfig.tailwindcss.setup({ capabilities = capabilities })
+		-- lspconfig.clangd.setup({ capabilities = capabilities })
+		--
 		vim.api.nvim_create_autocmd("LspAttach", {
 			group = vim.api.nvim_create_augroup("UserLspConfig", { clear = true }),
 			callback = function(ev)
