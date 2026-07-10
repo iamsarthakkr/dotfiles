@@ -120,4 +120,4 @@ source $ZSH/oh-my-zsh.sh
 # MySQL
 export PATH=${PATH}:/usr/local/mysql/bin
 
-[ -f /Users/sarthakkumar/Work/scripts/setup.sh ] && source  /Users/sarthakkumar/Work/scripts/setup.sh
+[ -f /Users/imsarthakkr/work/scripts/setup.sh ] && source  /Users/imsarthakkr/work/scripts/setup.sh
