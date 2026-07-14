@@ -1,1 +1,5 @@
 */.DS_Store
+.config/github-copilot/
+.config/cagent/
+.config/gh/
+.config/git/
