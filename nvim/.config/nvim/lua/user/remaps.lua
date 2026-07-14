@@ -61,13 +61,6 @@ for i = 1, 9 do
 end
 
 keymap.set("t", "<esc><esc>", "<C-\\><C-n>", { desc = "go to insert mode in terminal " })
-keymap.set("n", "<leader>to", function()
-	vim.cmd.vnew()
-	vim.cmd.terminal()
-	vim.cmd.wincmd("J")
-	vim.cmd("startinsert")
-	vim.api.nvim_win_set_height(0, 15)
-end, { desc = "open terminal in vertical split" })
 
 keymap.set({ "n" }, "<leader>yf", "<cmd>normal! mzggVGy`z<CR>", { desc = "Yank File" })
 keymap.set({ "n" }, "<leader>cf", '<cmd>normal! ggVG"_d<CR>', { desc = "Clear file" })

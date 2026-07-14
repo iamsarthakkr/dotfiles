@@ -4,9 +4,9 @@ local state = {
 	float = {
 		win = -1,
 		buf = -1,
-		chan = -1
+		chan = -1,
 	},
-	buf_dir = ""
+	buf_dir = "",
 }
 
 local function open_centered_float(opts)
@@ -46,7 +46,7 @@ end
 
 M.toggle_terminal = function(opts)
 	if not vim.api.nvim_win_is_valid(state.float.win) then
-		local buf_dir = vim.fn.expand('%:p:h')
+		local buf_dir = vim.fn.expand("%:p:h")
 		local chan_nr = state.float.chan
 		state.float = open_centered_float({
 			buf = state.float.buf,
@@ -64,20 +64,20 @@ M.toggle_terminal = function(opts)
 		end
 		vim.cmd("startinsert")
 	else
-		-- close window	
+		-- close window
 		vim.api.nvim_win_hide(state.float.win)
 	end
 end
 
 M.is_open = function()
-	return	vim.api.nvim_win_is_valid(state.float.win)
+	return vim.api.nvim_win_is_valid(state.float.win)
 end
 
-vim.api.nvim_create_user_command("Float", M.toggle_terminal , {
+vim.api.nvim_create_user_command("Float", M.toggle_terminal, {
 	nargs = "*",
 	desc = "Open a centered floating window. Usage: :CenteredFloat [width_percent] [height_percent]",
 })
 
-vim.keymap.set({"n", "t"}, "<C-t>", M.toggle_terminal, { desc = "Toggle floating terminal" })
+vim.keymap.set({ "n", "t" }, "<C-t>", M.toggle_terminal, { desc = "Toggle floating terminal" })
 
 return M
