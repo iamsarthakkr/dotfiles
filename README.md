@@ -12,6 +12,7 @@ dotfiles/
 ├── tmux/.config/tmux/tmux.conf
 ├── ghostty/.config/ghostty/config
 ├── zsh/.zshrc
+├── claude/.claude/CLAUDE.md
 ├── vs-code/...
 ```
 
@@ -26,8 +27,12 @@ config there without ever touching this repo.
 ./install.sh
 ```
 
-This stows `nvim`, `tmux`, `ghostty`, and `zsh` into `$HOME`. Requires `stow`
-(`brew install stow`).
+This stows `nvim`, `tmux`, `ghostty`, `zsh`, and `claude` into `$HOME`. Requires
+`stow` (`brew install stow`).
+
+Note: `~/.claude` already exists as a real directory (Claude Code state lives
+there), so stow only symlinks the individual `CLAUDE.md` file into it, not the
+whole directory.
 
 To stow/unstow a single package manually:
 
